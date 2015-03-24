@@ -19,9 +19,11 @@
 #ifndef CTA_OUTPUT_HPP__
 #define CTA_OUTPUT_HPP__
 
-#include "terms.hpp"
 #include <boost/preprocessor/control/if.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
+#include <iostream>
+
+#include "terms.hpp"
 #include "macros.hpp"
 
 namespace cta {
