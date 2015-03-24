@@ -7,8 +7,6 @@
 #include "cta.hpp"
 
 using namespace cta;
-using namespace cta::functions;
-using namespace cta::operators;
 
 static auto x0 = make_var<double, 0>();
 static auto x1 = make_var<double, 1>();

@@ -2,7 +2,7 @@
 #define CTA_OPERATORS_HPP__
 
 namespace cta {
-namespace operators {
+namespace detail {
 
 #define CTA_VISIT_TYPE(type, _, kind, op, ...) kind(type, op)
 
@@ -32,7 +32,7 @@ namespace operators {
 
 #include "types.hpp"
 
-} // namespace operators
+} // namespace detail
 } // namespace cta
 
 #endif

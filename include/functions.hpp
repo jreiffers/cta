@@ -5,7 +5,6 @@
 #include <boost/preprocessor/repetition/enum_params.hpp>
 
 namespace cta {
-namespace functions {
 
 #if 0
 // this is disabled because pow currently only supports constant exponents.
@@ -45,7 +44,6 @@ detail::static_power<typename T::number_t, T, Exp> pow(const T& t) {
 	return { t };
 }
 
-} // namespace functions
 } // namespace cta
 
 #endif
