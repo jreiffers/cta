@@ -59,6 +59,20 @@ simplification:
 * binary +, -, *, /, 
 * pow, sin, cos, atan
 
+# Limitations
+
+CTA can't differentiate everything. For instance:
+
+    d/dx((x^2 - 1)^.5 - atan((x^2 - 1)^.5)) = (x^2 - 1)^.5 / x
+
+As you can see, this is defined at `x = 1`. CTA's simplification logic isn't 
+powerful to find this derivative, instead getting:
+
+    x/(x^2-1)^.5 - x/((x^2-1)^.5 * x^2)
+
+Both of these terms have a pole at `x = 1`, so the result at `x = 1` will be
+undefined and numerical stability in the vicinity will be poor.
+
 # Files
 
 * `cta.hpp`: includes all of the following files
