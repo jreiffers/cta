@@ -35,6 +35,9 @@ struct cta_type {
 template <typename number, int var>
 struct var_type : public cta_type<number, var_type<number, var>> {};
 
+template <typename number, int var, int index>
+struct dvar_type : public cta_type<number, dvar_type<number, var, index>> {};
+
 template <typename number, typename A0, int power>
 struct static_power : public cta_type<number, static_power<number, A0, power>> {
 	A0 a0;
@@ -62,6 +65,11 @@ struct static_power : public cta_type<number, static_power<number, A0, power>> {
 
 template <typename number, int var>
 detail::var_type<number, var> make_var() {
+	return {};
+}
+
+template <typename number, int var>
+detail::dvar_type<number, var, 0> make_dvar() {
 	return {};
 }
 

@@ -46,6 +46,11 @@ struct differentiator<var, var_type<number, var>> {
 	static one_type<int> differentiate(const var_type<number, var>&) { return {}; }
 };
 
+template <int var, int ivar, typename number, int index>
+struct differentiator<var, dvar_type<number, ivar, index>> {
+	static dvar_type<number, ivar, index+1> differentiate(const dvar_type<number, ivar, index>&) { return {}; }
+};
+
 #define CTA_DERIV_TEMPLATE_ARG(_, __, a) , decltype(a)
 #define CTA_DERIV_ARGS(seq) BOOST_PP_SEQ_FOR_EACH(CTA_DERIV_TEMPLATE_ARG, _, seq)
 #define CTA(type, seq) (type<number CTA_DERIV_ARGS(seq)>{ BOOST_PP_SEQ_ENUM(seq) })

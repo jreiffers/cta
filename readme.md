@@ -53,6 +53,19 @@ simplification:
     std::cout << differentiate(h, x) << std::endl; // prints (2*pow(x0, 1))
     std::cout << differentiate(i, x) << std::endl; // prints (2*x0)
 
+CTA can also handle the case where you know a value and its derivative(s) 
+(think taylor series):
+
+	auto t = make_var<double, 0>();
+    auto g = make_dvar<double, 1>();
+    auto f = t + pow<2>(g);
+    auto fdt = differentiate(g, t); // 1 + 2*g'*g
+	
+	std::cout << fdt(1, { 5, 10 }) << std::endl; // prints 101
+
+Not supplying a derivative required by an expression (for instance, calling
+`fdt(1, { 5 })`) results in a compile error.
+
 # Supported operations
 
 * unary -

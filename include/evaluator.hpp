@@ -42,7 +42,15 @@ struct evaluator<var_type<number, var>> {
 	static number evaluate(const var_type<number, var>&, const Args&... args) {
 		static_assert(var < sizeof...(args), "required variable not passed to eval");
 		return std::get<var>(std::make_tuple(args...));
-		;
+	}
+};
+
+template <typename number, int var, int index>
+struct evaluator<dvar_type<number, var, index>> {
+	template <typename... Args>
+	static number evaluate(const dvar_type<number, var, index>&, const Args&... args) {
+		static_assert(var < sizeof...(args), "required variable not passed to eval");
+		return std::get<index>(std::get<var>(std::make_tuple(args...)));
 	}
 };
 

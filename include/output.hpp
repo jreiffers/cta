@@ -34,6 +34,11 @@ std::ostream& operator<<(std::ostream& o, const var_type<number, var>&) {
 	return o << "x" << var;
 }
 
+template <typename number, int var, int index>
+std::ostream& operator<<(std::ostream& o, const dvar_type<number, var, index>&) {
+	return o << "x" << var << "(" << index << ")";
+}
+
 template <typename number, typename T, int pow>
 std::ostream& operator<<(std::ostream&, const static_power<number, T, pow>&);
 #define CTA_FORWARD(type, n)                                                                       \

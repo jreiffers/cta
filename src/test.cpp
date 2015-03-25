@@ -21,6 +21,7 @@
 
 #include <sstream>
 #include <string>
+#include <tuple>
 
 #include "cta.hpp"
 
@@ -81,4 +82,12 @@ BOOST_AUTO_TEST_CASE(diff) {
 	test("cos(x0)", sin(x0));
 	test("(-sin(x0))", cos(x0));
 	test("(1/(pow(x0, 2)+1))", atan(x0));
+}
+
+BOOST_AUTO_TEST_CASE(dvar) {
+	auto t = make_var<double, 0>();
+	auto g = make_dvar<double, 1>();
+	auto f = t + pow<2>(g);
+	auto fdt = differentiate(f, t);
+	BOOST_CHECK_CLOSE(101, fdt(1, std::make_tuple(5, 10)), 1e-10);
 }

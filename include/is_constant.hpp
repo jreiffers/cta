@@ -31,6 +31,9 @@ struct is_constant : std::true_type {};
 template <int var, typename number>
 struct is_constant<var, var_type<number, var>> : std::false_type {};
 
+template <int var, typename number, int index>
+struct is_constant<var, dvar_type<number, var, index>> : std::false_type {};
+
 template <int var, typename number, typename A, typename B>
 struct is_constant<var, sum<number, A, B>>
     : std::integral_constant<bool, is_constant<var, A>::value && is_constant<var, B>::value> {};
